@@ -1,4 +1,4 @@
-# Work with Python 3.6
+#!/usr/bin/env python3
 import discord
 
 TOKEN = 'NTYyOTU5MTE5ODc1NzAyNzk1.XKXBrg.YluBZBb5t-O4eTygY7qVXYXa9gw'
@@ -13,8 +13,8 @@ async def on_message(message):
 
     if message.content.startswith('!hello'):
         await message.channel.send('I heard you! {0.name}'.format(message.author))
-        #msg = 'Hello {0.author.mention}'.format(message)
-        #await client.send_message(message.channel, msg)
+    elif message.content.startswith('!help'):
+        await message.channel.send('Commands:\n- !help\n- !hello\n')
 
 @client.event
 async def on_ready():
