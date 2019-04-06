@@ -1,18 +1,13 @@
-#!/usr/bin/env python3
-import discord
 import time
-
-TOKEN = ''
-
-client = discord.Client()
+from bot import bot
 
 async def list_and_display_chan(message):
-    chans = client.get_all_channels()
+    chans = bot.get_all_channels()
     for chan in chans:
         print(chan.name)
         await message.channel.send('{0.name}'.format(chan))
 
-@client.event
+@bot.event
 async def on_member_join(member):
     guild = member.guild
     time.sleep(0.5)
@@ -20,9 +15,9 @@ async def on_member_join(member):
         to_send = 'Welcome {0.mention}! (＾◡＾)'.format(member)
         await guild.system_channel.send(to_send)
 
-@client.event
+@bot.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author == bot.user:
         return
 
     if message.content.startswith('!hello'):
@@ -32,10 +27,9 @@ async def on_message(message):
     elif message.content.startswith('!list'):
         list_and_display_chan(message)
 
-@client.event
+@bot.event
 async def on_ready():
-    print('Logged in as: {0.name}'.format(client.user))
-    print('Associete ID: {0.id}'.format(client.user))
     print('------')
-
-client.run(TOKEN)
+    print('Logged in as: {0.name}'.format(bot.user))
+    print('Associate ID: {0.id}'.format(bot.user))
+    print('------')
