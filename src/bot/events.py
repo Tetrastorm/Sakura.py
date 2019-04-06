@@ -84,7 +84,7 @@ async def tic_tac_toe_game(message):
             y = random.randint(0, 2)
         tic_tac_toe_map[y][x] = 2
         await tic_tac_toe_display(message)
-        if (have_win() == 2):
+        if have_win() == 2:
             await message.channel.send('Youpee! You lose!!!')
             tic_tac_toe_map = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
             bot.in_game = ""
@@ -113,7 +113,7 @@ async def on_message(message):
     if message.content.startswith('!hello'):
         await message.channel.send('I heard you! {0.name}'.format(message.author))
     elif message.content.startswith('!help'):
-        await message.channel.send('Commands:\n- !help\n- !hello\n')
+        await message.channel.send('Commands:\n- !help\n- !hello\n- !tic_tac_toe\n')
     elif message.content.startswith('!list'):
         list_and_display_chan(message)
     elif message.content.startswith('!tic_tac_toe'):
