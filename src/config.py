@@ -1,1 +1,1 @@
-TOKEN = 'Enter your bot token here'
+TOKEN = ''
