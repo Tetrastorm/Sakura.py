@@ -1,6 +1,17 @@
+#
+# Valentin Diard, 2019
+#
+# Project:     Sakura.py
+# License:     MIT License
+#
+# File:        events.py
+# Description: Define all event used by the bot.
+#
+
 import time
 import random
 from bot import bot
+from config import cmdinputs, cmdactions
 
 bot.in_game = ""
 tic_tac_toe_map = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
@@ -102,25 +113,16 @@ async def on_member_join(member):
     guild = member.guild
     time.sleep(0.5)
     if guild.system_channel is not None:
-        to_send = 'Welcome {0.mention}! (＾◡＾)'.format(member)
-        await guild.system_channel.send(to_send)
+        await guild.system_channel.send('Welcome {0.mention}! (＾◡＾)'.format(member))
 
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
         return
 
-    if message.content.startswith('!hello'):
-        await message.channel.send('I heard you! {0.name}'.format(message.author))
-    elif message.content.startswith('!help'):
-        await message.channel.send('Commands:\n- !help\n- !hello\n- !tic_tac_toe\n')
-    elif message.content.startswith('!list'):
-        list_and_display_chan(message)
-    elif message.content.startswith('!tic_tac_toe'):
-        await message.channel.send('Enter: "x y" for indicate where you will place your pawn')
-        bot.in_game = "tic_tac_toe"
-    elif bot.in_game == "tic_tac_toe":
-        await tic_tac_toe_game(message)
+    for x in range(0, 3):
+        if message.content.startswith(cmdinputs[x]):
+            await cmdactions[x](message)
 
 @bot.event
 async def on_ready():
