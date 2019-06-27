@@ -7,6 +7,12 @@ async def list_and_display_chan(message):
         print(chan.name)
         await message.channel.send('{0.name}'.format(chan))
 
+async def hello_cmd(message):
+    await message.channel.send('I heard you! {0.name}'.format(message.author))
+
+async def help_cmd(message):
+    await message.channel.send('Commands:\n- !help\n- !hello\n')
+
 @bot.event
 async def on_member_join(member):
     guild = member.guild
@@ -21,9 +27,9 @@ async def on_message(message):
         return
 
     if message.content.startswith('!hello'):
-        await message.channel.send('I heard you! {0.name}'.format(message.author))
+        hello_cmd(message)
     elif message.content.startswith('!help'):
-        await message.channel.send('Commands:\n- !help\n- !hello\n')
+        help_cmd(message)
     elif message.content.startswith('!list'):
         list_and_display_chan(message)
 
