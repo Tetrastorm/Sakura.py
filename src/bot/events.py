@@ -1,17 +1,17 @@
 import time
 from bot import bot
 
-async def list_and_display_chan(message):
+def list_and_display_chan(message):
     chans = bot.get_all_channels()
     for chan in chans:
         print(chan.name)
-        await message.channel.send('{0.name}'.format(chan))
+        return message.channel.send('{0.name}'.format(chan))
 
-async def hello_cmd(message):
-    await message.channel.send('I heard you! {0.name}'.format(message.author))
+def hello_cmd(message):
+    return message.channel.send('I heard you! {0.name}'.format(message.author))
 
-async def help_cmd(message):
-    await message.channel.send('Commands:\n- !help\n- !hello\n')
+def help_cmd(message):
+    return message.channel.send('Commands:\n- !help\n- !hello\n')
 
 @bot.event
 async def on_member_join(member):
@@ -27,11 +27,11 @@ async def on_message(message):
         return
 
     if message.content.startswith('!hello'):
-        hello_cmd(message)
+        await hello_cmd(message)
     elif message.content.startswith('!help'):
-        help_cmd(message)
+        awiat help_cmd(message)
     elif message.content.startswith('!list'):
-        list_and_display_chan(message)
+        await list_and_display_chan(message)
 
 @bot.event
 async def on_ready():
