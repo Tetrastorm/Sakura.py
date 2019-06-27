@@ -29,7 +29,7 @@ async def on_message(message):
     if message.content.startswith('!hello'):
         await hello_cmd(message)
     elif message.content.startswith('!help'):
-        awiat help_cmd(message)
+        await help_cmd(message)
     elif message.content.startswith('!list'):
         await list_and_display_chan(message)
 
