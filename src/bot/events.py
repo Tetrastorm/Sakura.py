@@ -1,3 +1,13 @@
+#
+# Valentin Diard, 2019
+#
+# Project:     Sakura.py
+# License:     MIT License
+#
+# File:        events.py
+# Description: Define all event used by the bot.
+#
+
 import time
 from bot import bot
 from config import cmdinputs, cmdactions

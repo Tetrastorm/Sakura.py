@@ -1,3 +1,13 @@
+#
+# Valentin Diard, 2019
+#
+# Project:     Sakura.py
+# License:     MIT License
+#
+# File:        __init__.py
+# Description: init bot.
+#
+
 import discord
 from config import TOKEN
 

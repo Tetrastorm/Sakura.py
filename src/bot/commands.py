@@ -1,3 +1,13 @@
+#
+# Valentin Diard, 2019
+#
+# Project:     Sakura.py
+# License:     MIT License
+#
+# File:        commands.py
+# Description: Define command behaviour.
+#
+
 def list_and_display_chan(message):
     chans = bot.get_all_channels()
     for chan in chans:
