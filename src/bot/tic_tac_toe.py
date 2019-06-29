@@ -118,14 +118,17 @@ async def ai_turn(message):
         y = random.randint(0, 2)
     game_going_on[game_is_going_on_here(message)].board[y][x] = -1
     await message.channel.send('It\'s my turn ^^')
+    await message.channel.send('*Sakura.py played: ' + str(x + 1) + ' ' + str(y + 1) + '*')
     await message.channel.send(diplay_board(game_going_on[game_is_going_on_here(message)]))
 
 async def player_turn(message):
     parse_msg = message.content.split(" ")
+    x = int(parse_msg[0]) - 1
+    y = int(parse_msg[1]) - 1
 
-    if (int(parse_msg[0]) < 3 and int(parse_msg[0]) >= 0 and int(parse_msg[1]) < 3 and int(parse_msg[1]) >= 0 and game_going_on[game_is_going_on_here(message)].board[int(parse_msg[1])][int(parse_msg[0])] == 0):
-        await message.channel.send('Player play: ' + message.content)
-        game_going_on[game_is_going_on_here(message)].board[int(parse_msg[1])][int(parse_msg[0])] = 1
+    if x < 3 and x >= 0 and y < 3 and y >= 0 and game_going_on[game_is_going_on_here(message)].board[y][x] == 0:
+        await message.channel.send('*Player played: ' + message.content + '*')
+        game_going_on[game_is_going_on_here(message)].board[y][x] = 1
         await message.channel.send(diplay_board(game_going_on[game_is_going_on_here(message)]))
     else:
         await message.channel.send('**Error:** Invalid request.')

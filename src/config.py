@@ -1,4 +1,4 @@
-TOKEN = 'Entrer your token here'
+TOKEN = 'Put your token here'
 
 GITHUB_LINK='https://github.com/Tetrastorm/Sakura.py'
 
