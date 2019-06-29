@@ -25,7 +25,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    for x in range(0, 3):
+    for x in range(0, len(cmdinputs)):
         if message.content == cmdinputs[x]:
             await cmdactions[x](message)
             return
