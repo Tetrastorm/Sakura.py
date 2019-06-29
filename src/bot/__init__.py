@@ -14,5 +14,8 @@ from config import TOKEN
 bot = discord.Client()
 
 from bot import events
+from bot import tic_tac_toe as tictac
+from bot import game
+
 
 bot.run(TOKEN)
