@@ -88,6 +88,17 @@ def check_victory(board, player):
         tmp = 0
     return False
 
+def have_no_space_available(board):
+    space_available = 0
+
+    for line in board:
+        for cell in line:
+            if cell == 0:
+                space_available += 1
+    if space_available == 0:
+        return True
+    return False
+
 async def tic_tac_toe_game(message):
     global game_going_on
     game_exist = game_is_going_on_here(message)
@@ -121,6 +132,11 @@ async def player_turn(message):
         return
 
     if check_victory(game_going_on[game_is_going_on_here(message)].board, 1):
+        await message.channel.send('Dammit! You win!!!')
+        remove_current_game(game_going_on[game_is_going_on_here(message)])
+        return
+
+    if have_no_space_available(game_going_on[game_is_going_on_here(message)].board):
         await message.channel.send('We are stuck, GG!!!')
         remove_current_game(game_going_on[game_is_going_on_here(message)])
         return
