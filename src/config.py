@@ -1,3 +1,13 @@
+#
+# Valentin Diard, 2019
+#
+# Project:     Sakura.py
+# License:     MIT License
+#
+# File:        config.py
+# Description: Configure all global variables used by the bot.
+#
+
 TOKEN = 'Put your token here'
 
 GITHUB_LINK = 'https://github.com/Tetrastorm/Sakura.py'
@@ -38,8 +48,7 @@ CMD_INPUTS = ['!hello',
             '!tic_tac_toe',
             '!release',
             '!link',
-            '!github'
-            ]
+            '!github']
 
 from bot import commands as cmd
 from bot import tic_tac_toe as tictac
