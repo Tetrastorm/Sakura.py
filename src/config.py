@@ -1,4 +1,4 @@
-TOKEN = 'NTkzNzcwMTE2MTY0ODc4MzQ0.XRTqgw.h_MnKTO2YMBvFyp4t6E3KFn-uhc'
+TOKEN = 'Enter your token here'
 
 from bot import commands as cmd
 from bot import tic_tac_toe as tictac
