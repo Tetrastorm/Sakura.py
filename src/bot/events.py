@@ -10,8 +10,7 @@
 
 import time
 from bot import bot
-from config import cmdinputs, cmdactions
-from bot import tic_tac_toe as tictac
+from config import CMD_INPUTS, CMD_ACTIONS, WELCOME_MSG
 
 @bot.event
 async def on_member_join(member):
@@ -25,9 +24,9 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-    for x in range(0, len(cmdinputs)):
-        if message.content == cmdinputs[x]:
-            await cmdactions[x](message)
+    for x in range(0, len(CMD_INPUTS)):
+        if message.content == CMD_INPUTS[x]:
+            await CMD_ACTIONS[x](message)
             return
     await tictac.game_manager(message)
 
