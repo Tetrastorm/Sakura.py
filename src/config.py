@@ -8,7 +8,7 @@
 # Description: Configure all global variables used by the bot.
 #
 
-TOKEN = 'Put your token here'
+TOKEN = 'Put your bot token here'
 
 GITHUB_LINK = 'https://github.com/Tetrastorm/Sakura.py'
 
@@ -23,6 +23,8 @@ REALEASE_NOTE = ['```md\n',
                'Feature:\n',
                '- Add !release to display the last release note\n'
                '- Add !link to get the link for add the bot on another discord server\n',
+               '- Add !rules when a game is going on to display game rules\n',
+               '- Add !state when a game is going on to retrieve the current game state\n',
                '\nBugs fix and improvements:\n',
                '- Improve help command\n',
                '- Update help command\n',

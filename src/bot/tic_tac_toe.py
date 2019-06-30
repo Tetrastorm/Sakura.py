@@ -13,13 +13,15 @@ import random
 game_going_on = []
 
 class game(object):
-    __slots__ = ['channel_id', 'game_name', 'board', 'player_function']
+    __slots__ = ['channel_id', 'game_name', 'board', 'player_function', 'state_function', 'rules_function']
 
-    def __init__(self, channel_id, game_name, board, player_function):
+    def __init__(self, channel_id, game_name, board, player_function, state, rules = 'No rules for this game are defined.'):
         self.channel_id = channel_id
         self.game_name = game_name
         self.board = board
         self.player_function = player_function
+        self.rules_function = rules
+        self.state_function = state
 
 def game_is_going_on_here(message):
     i = 0
@@ -44,7 +46,13 @@ async def game_manager(message):
     index = game_is_going_on_here(message)
 
     if -1 != index:
-        await game_going_on[index].player_function(message)
+        if message.content == '!rules':
+            await game_going_on[index].rules_function(message)
+        elif message.content == '!state':
+            await message.channel.send('**Current game:** ' + game_going_on[game_is_going_on_here(message)].game_name + '\n**Current game state:**')
+            await game_going_on[index].state_function(message)
+        else:
+            await game_going_on[index].player_function(message)
         return True
     return False
 
@@ -104,7 +112,7 @@ async def tic_tac_toe_game(message):
     game_exist = game_is_going_on_here(message)
 
     if game_exist == -1:
-        game_going_on += [game(message.channel.id, 'tic-tac-toe', [[0,0,0], [0,0,0], [0,0,0]], player_turn)]
+        game_going_on += [game(message.channel.id, 'tic-tac-toe', [[0,0,0], [0,0,0], [0,0,0]], player_turn, state, rules)]
         await message.channel.send(diplay_board(game_going_on[game_is_going_on_here(message)]))
     else:
         await message.channel.send('**Error:** Tic Tac Toe game is currently going on.')
@@ -151,4 +159,8 @@ async def player_turn(message):
         remove_current_game(game_going_on[game_is_going_on_here(message)])
         return
 
+async def state(message):
+    await message.channel.send(diplay_board(game_going_on[game_is_going_on_here(message)]))
 
+async def rules(message):
+    await message.channel.send('```md\n# Tic Tac Toe rules:\n\nGoals:\n- Placing three of their marks in a horizontal, vertical, or diagonal row to win the game.\n\nWho to play:\n- Indicate the x and y of the cell where you wont play.\n\nExample:\n- \"1 1\"\n\nFor more informations:\n- https://en.wikipedia.org/wiki/Tic-tac-toe```')

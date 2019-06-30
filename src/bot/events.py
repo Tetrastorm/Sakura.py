@@ -10,7 +10,8 @@
 
 import time
 from bot import bot
-from config import CMD_INPUTS, CMD_ACTIONS, WELCOME_MSG
+from config import CMD_INPUTS, CMD_ACTIONS
+from bot import tic_tac_toe as tictac
 
 @bot.event
 async def on_member_join(member):
