@@ -5,7 +5,8 @@ The bot is actually in devellopment.
 
 I would code on this bot:
 - Some server management tools (Concept features)
-- Some games (Working Progress)
+- Games:
+  - Tic Tac Toe
 - Vote tools (Concept features)
 
 To add this bot on your server:
