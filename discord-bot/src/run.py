@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 #
 # Valentin Diard, 2019
 #
